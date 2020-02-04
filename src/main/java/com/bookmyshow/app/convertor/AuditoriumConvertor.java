@@ -6,20 +6,20 @@ package com.bookmyshow.app.convertor;
 
 import com.bookmyshow.app.model.AuditoriumMovieMapping;
 import com.bookmyshow.app.model.Movie;
-import com.bookmyshow.app.model.MovieRequest;
+import com.bookmyshow.app.request.AddMovieRequest;
 import org.springframework.stereotype.Component;
 
 @Component
 public class AuditoriumConvertor {
 
-    public AuditoriumMovieMapping createAuditoriumMovieMapping(MovieRequest movieRequest, Movie movie) {
+    public AuditoriumMovieMapping createAuditoriumMovieMapping(AddMovieRequest addMovieRequest, Movie movie) {
         AuditoriumMovieMapping auditoriumMovieMapping = new AuditoriumMovieMapping();
-        auditoriumMovieMapping.setAudiId(movieRequest.getAudiId());
+        auditoriumMovieMapping.setAudiId(addMovieRequest.getAudiId());
         auditoriumMovieMapping.setMovieId(movie.getMovieId());
-        auditoriumMovieMapping.setCity(movieRequest.getCity());
-        auditoriumMovieMapping.setStartTime(movieRequest.getStartTime());
-        auditoriumMovieMapping.setEndTime(movieRequest.getEndTime());
-        auditoriumMovieMapping.setMovieId(movieRequest.getMovieId());
+        auditoriumMovieMapping.setCity(addMovieRequest.getCity());
+        auditoriumMovieMapping.setStartTime(addMovieRequest.getStartTime());
+        auditoriumMovieMapping.setEndTime(addMovieRequest.getEndTime());
+        auditoriumMovieMapping.setMovieId(addMovieRequest.getMovieId());
         return auditoriumMovieMapping;
     }
 }

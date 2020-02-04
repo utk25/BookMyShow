@@ -1,10 +1,5 @@
-/**
- * Alipay.com Inc.
- * Copyright (c) 2004-2020 All Rights Reserved.
- */
 package com.bookmyshow.app.repository.impl;
 
-import com.bookmyshow.app.model.MovieInCinema;
 import com.bookmyshow.app.repository.MovieCinemaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -19,8 +14,8 @@ public class MovieCinemaRepositoryImpl implements MovieCinemaRepository {
     private EntityManager entityManager;
 
     @Override
-    public void findMovieInAllCinema(Integer movieId, String city) {
-        Query query = entityManager.createNativeQuery("select am.movieId, am.audiId, am.city, am.startTime, " +
+    public void findMovieInAllCinema(String movieId, String city) {
+        /*Query query = entityManager.createNativeQuery("select am.movieId, am.audiId, am.city, am.startTime, " +
                 "c.cinemaId, c.cinemaName, c.cinemaAddress " +
                 "from auditorium_movie_info am " +
                 "where am.movieId = :movieId and am.city = :city " +
@@ -31,6 +26,6 @@ public class MovieCinemaRepositoryImpl implements MovieCinemaRepository {
         query.setParameter("city", city);
 
         List<Object> movieInCinemas = query.getResultList();
-        System.out.println(movieInCinemas);
+        System.out.println(movieInCinemas);*/
     }
 }

@@ -4,16 +4,16 @@
  */
 package com.bookmyshow.app.convertor;
 
-import com.bookmyshow.app.model.MovieRequest;
+import com.bookmyshow.app.request.AddMovieRequest;
 import com.bookmyshow.app.model.Movie;
 import org.springframework.stereotype.Component;
 
 @Component
 public class MovieConvertor {
 
-    public Movie createMovie(MovieRequest movieRequest) {
+    public Movie createMovie(AddMovieRequest addMovieRequest) {
         Movie movie = new Movie();
-        movie.setMovieName(movieRequest.getMovieName());
+        movie.setMovieName(addMovieRequest.getMovieName());
         return movie;
     }
 }

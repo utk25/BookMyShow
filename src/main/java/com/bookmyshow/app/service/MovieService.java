@@ -8,7 +8,7 @@ import com.bookmyshow.app.convertor.AuditoriumConvertor;
 import com.bookmyshow.app.convertor.MovieConvertor;
 import com.bookmyshow.app.exception.OverlapTimeException;
 import com.bookmyshow.app.model.AuditoriumMovieMapping;
-import com.bookmyshow.app.model.MovieRequest;
+import com.bookmyshow.app.request.AddMovieRequest;
 import com.bookmyshow.app.model.Movie;
 import com.bookmyshow.app.repository.AuditoriumMovieRepository;
 import com.bookmyshow.app.repository.MovieRepository;
@@ -33,17 +33,17 @@ public class MovieService {
     @Autowired
     private AuditoriumMovieRepository auditoriumMovieRepository;
 
-    public AuditoriumMovieMapping addMovie(MovieRequest movieRequest) {
-        Optional<Movie> movieDB = movieRepository.findById(movieRequest.getMovieId());
+    public AuditoriumMovieMapping addMovie(AddMovieRequest addMovieRequest) {
+        Optional<Movie> movieDB = movieRepository.findById(addMovieRequest.getMovieId());
 
-        Movie movie = movieDB.orElseGet(() -> movieRepository.save(movieConvertor.createMovie(movieRequest)));
+        Movie movie = movieDB.orElseGet(() -> movieRepository.save(movieConvertor.createMovie(addMovieRequest)));
 
         AuditoriumMovieMapping auditoriumMovieMapping = auditoriumConvertor
-                .createAuditoriumMovieMapping(movieRequest, movie);
+                .createAuditoriumMovieMapping(addMovieRequest, movie);
 
         List<AuditoriumMovieMapping> list = auditoriumMovieRepository
-                .findMovieByTimeRange(movieRequest.getStartTime(),
-                movieRequest.getEndTime(), movieRequest.getAudiId());
+                .findMovieByTimeRange(addMovieRequest.getStartTime(),
+                addMovieRequest.getEndTime(), addMovieRequest.getAudiId());
 
         if (list.isEmpty()) {
             auditoriumMovieMapping = auditoriumMovieRepository.save(auditoriumMovieMapping);
@@ -51,7 +51,7 @@ public class MovieService {
             throw new OverlapTimeException("Movie already exists for this cinema between this duration");
         }
 
-        auditoriumMovieRepository.findMovieInAllCinema(movie.getMovieId(), movieRequest.getCity());
+        auditoriumMovieRepository.findMovieInAllCinema(movie.getMovieId(), addMovieRequest.getCity());
         return auditoriumMovieMapping;
     }
 }

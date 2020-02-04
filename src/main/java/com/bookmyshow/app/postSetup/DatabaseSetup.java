@@ -1,5 +1,6 @@
 package com.bookmyshow.app.postSetup;
 
+import com.bookmyshow.app.cache.CacheClient;
 import com.bookmyshow.app.enums.AuditoriumRowPos;
 import com.bookmyshow.app.model.Auditorium;
 import com.bookmyshow.app.model.AuditoriumRow;
@@ -19,9 +20,14 @@ public class DatabaseSetup implements CommandLineRunner {
     @Autowired
     private CinemaService cinemaService;
 
+    @Autowired
+    private CacheClient cacheClient;
+
     @Override
     public void run(String...args) throws Exception {
-        Random random = new Random();
+
+
+        /*Random random = new Random();
 
         Cinema cinema = new Cinema();
         cinema.setCinemaId(random.nextInt());
@@ -73,6 +79,8 @@ public class DatabaseSetup implements CommandLineRunner {
             }
         }
 
-        cinemaService.addCinemaLayout(cinema);
+        cinemaService.addCinemaLayout(cinema);*/
+
+        System.out.println(cacheClient.getAuditoriumRowSeatCount("123"));
     }
 }

@@ -1,5 +1,6 @@
 package com.bookmyshow.app.model;
 
+import com.bookmyshow.app.enums.AuditoriumRowPos;
 import lombok.Data;
 
 import javax.persistence.Column;
@@ -12,26 +13,22 @@ import java.util.Date;
 
 @Entity
 @Data
-@Table(name = "auditorium_movie_info")
-public class AuditoriumMovieMapping {
+@Table(name = "booking_status")
+public class AuditoriumRowStatus {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
     private Integer id;
 
-    @Column(name = "movieId")
-    private String movieId;
+    @Column(name = "auditoriumRowId")
+    private String auditoriumRowId;
 
-    @Column(name = "auditoriumId")
-    private String audiId;
-
-    @Column(name = "city")
-    private String city;
+    @Column(name = "status")
+    private Integer status;
 
     @Column(name = "startTime")
     private Date startTime;
 
-    @Column(name = "endTime")
-    private Date endTime;
+    @Column(name = "auditoriumRowPos")
+    private AuditoriumRowPos auditoriumRowPos;
 }

@@ -1,7 +1,3 @@
-/**
- * Alipay.com Inc.
- * Copyright (c) 2004-2020 All Rights Reserved.
- */
 package com.bookmyshow.app.model;
 
 import lombok.Data;
@@ -9,8 +5,6 @@ import lombok.Data;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -24,12 +18,12 @@ public class Auditorium {
 
     @Id
     @Column(name = "auditoriumId")
-    private Integer auditoriumId;
+    private String auditoriumId;
 
     @Column(name = "cinemaId")
-    private Integer cinemaId;
+    private String cinemaId;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "auditoriumId")
     private List<AuditoriumRow> auditoriumRows;
 }

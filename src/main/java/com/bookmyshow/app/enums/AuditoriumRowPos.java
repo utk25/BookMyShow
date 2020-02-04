@@ -35,12 +35,20 @@ public enum AuditoriumRowPos {
 
     private String pos;
 
+    public String getPos() {
+        return pos;
+    }
+
     private AuditoriumRowPos(String pos) {
         this.pos = pos;
     }
 
-    public static String getPos(AuditoriumRowPos auditoriumRowPos) {
-        return auditoriumRowPos.pos;
+    public static AuditoriumRowPos getByPos(String pos) {
+        for (AuditoriumRowPos auditoriumRowPos: values()){
+            if(auditoriumRowPos.pos.equalsIgnoreCase(pos)){
+                return auditoriumRowPos;
+            }
+        }
+        return null;
     }
-
 }

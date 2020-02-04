@@ -1,7 +1,3 @@
-/**
- * Alipay.com Inc.
- * Copyright (c) 2004-2020 All Rights Reserved.
- */
 package com.bookmyshow.app.model;
 
 import lombok.Data;
@@ -24,12 +20,12 @@ public class Cinema {
 
     @Id
     @Column(name = "cinemaId")
-    private Integer cinemaId;
+    private String cinemaId;
 
     @Column(name = "cinemaName")
     private String cinemaName;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "auditoriumId")
     private List<Auditorium> auditoriums;
 
