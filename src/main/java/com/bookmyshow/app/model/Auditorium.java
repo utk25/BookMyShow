@@ -25,5 +25,6 @@ public class Auditorium {
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "auditoriumId")
+
     private List<AuditoriumRow> auditoriumRows;
 }

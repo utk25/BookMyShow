@@ -44,8 +44,8 @@ public enum AuditoriumRowPos {
     }
 
     public static AuditoriumRowPos getByPos(String pos) {
-        for (AuditoriumRowPos auditoriumRowPos: values()){
-            if(auditoriumRowPos.pos.equalsIgnoreCase(pos)){
+        for (AuditoriumRowPos auditoriumRowPos : values()){
+            if(auditoriumRowPos.getPos().equalsIgnoreCase(pos)){
                 return auditoriumRowPos;
             }
         }

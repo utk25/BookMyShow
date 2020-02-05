@@ -1,4 +1,4 @@
-package com.bookmyshow.app.request;
+package com.bookmyshow.app.dto.request;
 
 import lombok.Data;
 
@@ -10,5 +10,5 @@ public class AudiLayoutRequest {
 
     public String cinemaId;
 
-    List<Map<String,Integer > > noOfRows;
+    List<Map<String, Integer>> noOfRows;
 }

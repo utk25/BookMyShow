@@ -4,7 +4,7 @@
  */
 package com.bookmyshow.app.convertor;
 
-import com.bookmyshow.app.request.AddMovieRequest;
+import com.bookmyshow.app.dto.request.AddMovieRequest;
 import com.bookmyshow.app.model.Movie;
 import org.springframework.stereotype.Component;
 

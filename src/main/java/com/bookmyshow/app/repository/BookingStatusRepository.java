@@ -11,8 +11,8 @@ public interface BookingStatusRepository extends CrudRepository<AuditoriumRowSta
 
     @Query("select distinct ar " +
             "from AuditoriumRowStatus ar " +
-            "where ar.auditoriumRowId =: auditoriumRow_Id " +
-            "and ar.startTime =: start_Time")
+            "where ar.auditoriumRowId = :auditoriumRow_Id " +
+            "and ar.startTime = :start_Time")
     AuditoriumRowStatus findRowStatusByStartTime(@Param("start_Time") Date startTime,
                                                  @Param("auditoriumRow_Id") String auditoriumRowId);
 }

@@ -1,4 +1,4 @@
-package com.bookmyshow.app.request;
+package com.bookmyshow.app.dto.request;
 
 import lombok.Data;
 
@@ -20,5 +20,4 @@ public class AddMovieRequest {
     private Date startTime;
 
     private Date endTime;
-
 }
