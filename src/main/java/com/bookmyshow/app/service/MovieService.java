@@ -1,11 +1,6 @@
-/**
- * Alipay.com Inc.
- * Copyright (c) 2004-2020 All Rights Reserved.
- */
 package com.bookmyshow.app.service;
 
 import com.bookmyshow.app.convertor.AuditoriumConvertor;
-import com.bookmyshow.app.convertor.MovieConvertor;
 import com.bookmyshow.app.dto.request.AddMovieRequest;
 import com.bookmyshow.app.dto.response.MovieInfoEntity;
 import com.bookmyshow.app.dto.response.MovieInfoResponse;
@@ -34,13 +29,7 @@ import java.util.stream.Collectors;
 public class MovieService {
 
     @Autowired
-    private MovieConvertor movieConvertor;
-
-    @Autowired
     private AuditoriumConvertor auditoriumConvertor;
-
-    @Autowired
-    private MovieRepository movieRepository;
 
     @Autowired
     private AuditoriumRepository auditoriumRepository;
@@ -135,5 +124,37 @@ public class MovieService {
             movieInfoEntities.add(movieInfoEntity);
         }
         return MovieInfoResponse.builder().movieInfoEntities(movieInfoEntities).build();
+    }
+
+    public AuditoriumConvertor getAuditoriumConvertor() {
+        return auditoriumConvertor;
+    }
+
+    public void setAuditoriumConvertor(AuditoriumConvertor auditoriumConvertor) {
+        this.auditoriumConvertor = auditoriumConvertor;
+    }
+
+    public AuditoriumRepository getAuditoriumRepository() {
+        return auditoriumRepository;
+    }
+
+    public void setAuditoriumRepository(AuditoriumRepository auditoriumRepository) {
+        this.auditoriumRepository = auditoriumRepository;
+    }
+
+    public CinemaRepository getCinemaRepository() {
+        return cinemaRepository;
+    }
+
+    public void setCinemaRepository(CinemaRepository cinemaRepository) {
+        this.cinemaRepository = cinemaRepository;
+    }
+
+    public AuditoriumMovieRepository getAuditoriumMovieRepository() {
+        return auditoriumMovieRepository;
+    }
+
+    public void setAuditoriumMovieRepository(AuditoriumMovieRepository auditoriumMovieRepository) {
+        this.auditoriumMovieRepository = auditoriumMovieRepository;
     }
 }

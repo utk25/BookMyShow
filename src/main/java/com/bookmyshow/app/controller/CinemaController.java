@@ -28,4 +28,11 @@ public class CinemaController {
                 HttpStatus.OK);
     }
 
+    public CinemaService getCinemaService() {
+        return cinemaService;
+    }
+
+    public void setCinemaService(CinemaService cinemaService) {
+        this.cinemaService = cinemaService;
+    }
 }

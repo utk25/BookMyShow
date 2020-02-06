@@ -1,5 +1,6 @@
 package com.bookmyshow.app.service;
 
+import com.bookmyshow.app.convertor.AuditoriumRowStatusConvertor;
 import com.bookmyshow.app.dao.BlockingSeats;
 import com.bookmyshow.app.dto.request.BlockSeatRequest;
 import com.bookmyshow.app.dto.request.BookingRequestInfo;
@@ -28,6 +29,9 @@ public class BookingService {
 
     @Autowired
     private BookingStatusRepository bookingStatusRepository;
+
+    @Autowired
+    private AuditoriumRowStatusConvertor auditoriumRowStatusConvertor;
 
     public boolean blockAuditoriumSeats(BlockSeatRequest blockSeatRequest) throws Exception {
         for (BookingRequestInfo bookingRequestInfo : blockSeatRequest.getBooking()) {
@@ -59,7 +63,14 @@ public class BookingService {
             String auditoriumRowId = auditoriumRow.getAuditoriumRowId();
             AuditoriumRowStatus auditoriumRowStatus = bookingStatusRepository.
                     findRowStatusByStartTime(startTime, auditoriumRowId);
-            int statusFromDB = auditoriumRowStatus.getStatus();
+            int statusFromDB = 0;
+            if(auditoriumRowStatus == null) {
+                bookingStatusRepository.save(auditoriumRowStatusConvertor
+                        .createAuditoriumRowStatus(auditoriumRow, startTime));
+            } else {
+                statusFromDB = auditoriumRowStatus.getStatus();
+            }
+
             int statusInCache = 0;
             for (int seat = 1; seat <= auditoriumRow.getMaxCapacity(); seat++) {
                 if (blockingSeats.getSeatStatus(auditoriumRowId, String.valueOf(seat), startTime)) {
@@ -79,5 +90,37 @@ public class BookingService {
             auditoriumStatuses.add(auditoriumStatus);
         }
         return AuditoriumStatusResponse.builder().auditoriumStatuses(auditoriumStatuses).build();
+    }
+
+    public BlockingSeats getBlockingSeats() {
+        return blockingSeats;
+    }
+
+    public void setBlockingSeats(BlockingSeats blockingSeats) {
+        this.blockingSeats = blockingSeats;
+    }
+
+    public AuditoriumRowRepository getAuditoriumRowRepository() {
+        return auditoriumRowRepository;
+    }
+
+    public void setAuditoriumRowRepository(AuditoriumRowRepository auditoriumRowRepository) {
+        this.auditoriumRowRepository = auditoriumRowRepository;
+    }
+
+    public BookingStatusRepository getBookingStatusRepository() {
+        return bookingStatusRepository;
+    }
+
+    public void setBookingStatusRepository(BookingStatusRepository bookingStatusRepository) {
+        this.bookingStatusRepository = bookingStatusRepository;
+    }
+
+    public AuditoriumRowStatusConvertor getAuditoriumRowStatusConvertor() {
+        return auditoriumRowStatusConvertor;
+    }
+
+    public void setAuditoriumRowStatusConvertor(AuditoriumRowStatusConvertor auditoriumRowStatusConvertor) {
+        this.auditoriumRowStatusConvertor = auditoriumRowStatusConvertor;
     }
 }

@@ -36,4 +36,12 @@ public class MovieController {
                 statusMessage("Added movie successfully").build()).statusCode("0").build(),
                 HttpStatus.OK);
     }
+
+    public MovieService getMovieService() {
+        return movieService;
+    }
+
+    public void setMovieService(MovieService movieService) {
+        this.movieService = movieService;
+    }
 }

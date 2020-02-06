@@ -45,4 +45,12 @@ public class BookingController {
                 message("Could not block successfully").isBlocked(false).build()).statusCode("0").build(),
                 HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
+    public BookingService getBookingService() {
+        return bookingService;
+    }
+
+    public void setBookingService(BookingService bookingService) {
+        this.bookingService = bookingService;
+    }
 }

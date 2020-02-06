@@ -4,6 +4,7 @@ package com.bookmyshow.app.dao;
 import com.bookmyshow.app.constants.RedisConstants;
 import com.bookmyshow.app.exception.SameSeatException;
 import io.netty.util.internal.StringUtil;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
@@ -12,6 +13,7 @@ import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 @Component
+@Data
 public class BlockingSeats {
 
     @Autowired
@@ -37,6 +39,6 @@ public class BlockingSeats {
 
     public boolean getSeatStatus(String auditoriumRowId, String seatNumber, Date startTime) {
         String lockKey = getRedisLockKey(auditoriumRowId, seatNumber, startTime);
-        return StringUtil.isNullOrEmpty(redisTemplate.opsForValue().get(lockKey));
+        return !StringUtil.isNullOrEmpty(redisTemplate.opsForValue().get(lockKey));
     }
 }

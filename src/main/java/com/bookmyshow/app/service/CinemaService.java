@@ -18,9 +18,6 @@ import java.util.Map;
 public class CinemaService {
 
     @Autowired
-    private CinemaRepository cinemaRepository;
-
-    @Autowired
     private AuditoriumRepository auditoriumRepository;
 
     @Autowired
@@ -53,5 +50,21 @@ public class CinemaService {
             }
         }
         return audiId;
+    }
+
+    public AuditoriumRepository getAuditoriumRepository() {
+        return auditoriumRepository;
+    }
+
+    public void setAuditoriumRepository(AuditoriumRepository auditoriumRepository) {
+        this.auditoriumRepository = auditoriumRepository;
+    }
+
+    public AuditoriumRowRepository getAuditoriumRowRepository() {
+        return auditoriumRowRepository;
+    }
+
+    public void setAuditoriumRowRepository(AuditoriumRowRepository auditoriumRowRepository) {
+        this.auditoriumRowRepository = auditoriumRowRepository;
     }
 }
